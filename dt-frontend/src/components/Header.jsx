@@ -5,7 +5,13 @@ import clockicon from "../assets/clock-regular.svg";
 import orbicon from "../assets/crystal-ball.png";
 import { format } from "date-fns";
 
-const Header = ({ currentWeather, forecastWeather, setSelectedWeather }) => {
+const Header = ({
+  currentWeather,
+  forecastWeather,
+  setSelectedWeather,
+  date,
+  avg_temp,
+}) => {
   return (
     <div className="flex divide-x-2 divide-gray-800 h-32 flex-row w-full items-center justify-center text-center sticky inset-x-0 top-0 z-30 border-b border-gray-700 bg-black/75 backdrop-blur-sm transition-all rounded-2xl">
       <div
@@ -21,7 +27,7 @@ const Header = ({ currentWeather, forecastWeather, setSelectedWeather }) => {
               </span>
             </div>
             <div className="flex flex-row justify-center space-x-20 mt-5">
-              <p>2 degrees</p>
+              <p>{avg_temp}</p>
               <div className="flex flex-col justify-start">
                 <div className="flex flex-row space-x-2 justify-center">
                   <p>Heavy snow</p>{" "}
@@ -35,9 +41,13 @@ const Header = ({ currentWeather, forecastWeather, setSelectedWeather }) => {
           <div className="flex justify-end">
             <div className="flex flex-col  border-gray-700">
               <div className="flex justify-center space-y-10">
-                <img src={calendaricon} className="h-5 w-5" alt="Calendar Icon" />
+                <img
+                  src={calendaricon}
+                  className="h-5 w-5"
+                  alt="Calendar Icon"
+                />
               </div>
-              <p>{format(new Date(), "hh:mmaaaaa'm' dd MMM, yyyy")}</p>
+              <p>{date}</p>
             </div>
           </div>
         </div>
