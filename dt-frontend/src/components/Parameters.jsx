@@ -1,39 +1,51 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
 
 export default function Parameters({
-  MaxTemp,
-  MinTemp,
-  AvgTemp,
-  MaxWind,
-  TotalPer,
-  TotalSnow,
-  AvgVisibility,
-  AvgHum,
+  avg_humidity,
+  avg_temp,
+  avg_visibility,
+  chance_of_rain,
+  chance_of_snow,
+  condition,
+  max_temp,
+  max_wind,
+  min_temp,
+  total_precip,
+  total_snow,
+  uv_index,
+  will_it_rain,
+  will_it_snow,
 }) {
   const [parameters, setParameters] = useState({
-    MaxTemp,
-    MinTemp,
-    AvgTemp,
-    MaxWind,
-    TotalPer,
-    TotalSnow,
-    AvgVisibility,
-    AvgHum,
-  })
-  const [showUpdateButton, setShowUpdateButton] = useState(false)
+    avg_humidity,
+    avg_temp,
+    avg_visibility,
+    chance_of_rain,
+    chance_of_snow,
+    condition,
+    max_temp,
+    max_wind,
+    min_temp,
+    total_precip,
+    total_snow,
+    uv_index,
+    will_it_rain,
+    will_it_snow,
+  });
+  const [showUpdateButton, setShowUpdateButton] = useState(false);
 
   const handleChange = (event) => {
     setParameters({
       ...parameters,
       [event.target.name]: event.target.value,
-    })
-    setShowUpdateButton(true)
-  }
+    });
+    setShowUpdateButton(true);
+  };
 
   const handleUpdate = () => {
-    console.log(parameters)
-    setShowUpdateButton(false)
-  }
+    console.log(parameters);
+    setShowUpdateButton(false);
+  };
 
   return (
     <div className="w-1/4 h-screen items-center text-center justify-center">
@@ -69,5 +81,5 @@ export default function Parameters({
         </div>
       </div>
     </div>
-  )
+  );
 }
