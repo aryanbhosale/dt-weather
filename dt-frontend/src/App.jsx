@@ -50,22 +50,18 @@ function App() {
       />
       <div className="flex flex-row w-full justify-center items-center divide-x-2 divide-gray-800">
         <Render selectedWeather={selectedWeather} />
-        {/* <Parameters
-          avg_humidity={allData?.[latestRef.current]?.avg_humidity || 5}
-          avg_temp={allData?.[latestRef.current]?.["avg_temp (c)"] || 15}
-          avg_visibility={allData?.[latestRef.current]?.avg_visibility || 8}
-          chance_of_rain={allData?.[latestRef.current]?.chance_of_rain || 10}
-          chance_of_snow={allData?.[latestRef.current]?.chance_of_snow || 20}
-          condition={allData?.[latestRef.current]?.condition || 30}
-          max_temp={allData?.[latestRef.current]?.max_temp || 30}
-          max_wind={allData?.[latestRef.current]?.max_wind || 30}
-          min_temp={allData?.[latestRef.current]?.min_temp || 30}
-          total_precip={allData?.[latestRef.current]?.total_precip || 30}
-          total_snow={allData?.[latestRef.current]?.total_snow || 30}
-          uv_index={allData?.[latestRef.current]?.uv_index || 30}
-          will_it_rain={allData?.[latestRef.current]?.will_it_rain || 30}
-          will_it_snow={allData?.[latestRef.current]?.will_it_snow || 30}
-        /> */}
+        { <Parameters
+          avg_humidity={allData[0].avg_humidity || ""}
+          avg_temp={allData[0].avg_temp || ""}
+          avg_visibility={allData[0].avg_visibility || ""}
+          condition={allData[0].condition || ""}
+          max_temp={allData[0].max_temp || ""}
+          max_wind={allData[0].max_wind || ""}
+          min_temp={allData[0].min_temp || ""}
+          total_precip={allData[0].total_precip || ""}
+          total_snow={allData[0].total_snow || ""}
+          uv_index={allData[0].uv_index || ""}
+        /> }
       </div>
     </div>
   );
