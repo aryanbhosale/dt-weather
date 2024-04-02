@@ -6,7 +6,7 @@ import orbicon from "../assets/crystal-ball.png";
 import { format } from "date-fns";
 
 const Header = ({
-  currentWeather,
+  condition,
   forecastWeather,
   setSelectedWeather,
   date,
@@ -16,7 +16,7 @@ const Header = ({
     <div className="flex divide-x-2 divide-gray-800 h-32 flex-row w-full items-center justify-center text-center sticky inset-x-0 top-0 z-30 border-b border-gray-700 bg-black/75 backdrop-blur-sm transition-all rounded-2xl">
       <div
         className="flex justify-center items-center text-center w-full h-full cursor-pointer hover:bg-gray-800 active:bg-slate-950 transition-all"
-        onClick={() => setSelectedWeather(currentWeather)}
+        onClick={() => setSelectedWeather(condition)} //format to represent number as a condition
       >
         <div className="flex flex-row justify-around h-full w-full pt-5">
           <div>
@@ -27,10 +27,10 @@ const Header = ({
               </span>
             </div>
             <div className="flex flex-row justify-center space-x-20 mt-5">
-              <p>{avg_temp}</p>
+              <p>{avg_temp} °C</p>
               <div className="flex flex-col justify-start">
                 <div className="flex flex-row space-x-2 justify-center">
-                  <p>Heavy snow</p>{" "}
+                  <p>{condition} - Number corresponds to a condition</p>{" "}
                   <span>
                     <img src={snowicon} className="h-5 w-5" alt="Snow Icon" />
                   </span>
@@ -47,7 +47,7 @@ const Header = ({
                   alt="Calendar Icon"
                 />
               </div>
-              <p>{date}</p>
+              <p>{format(new Date(date), "dd MMM, yyyy - HH:mm")}</p>
             </div>
           </div>
         </div>
