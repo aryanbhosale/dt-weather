@@ -8,8 +8,7 @@ function App() {
   const [currentWeather, setCurrentWeather] = useState("Snow");
   const [forecastWeather, setForecastWeather] = useState("Rain");
   const [selectedWeather, setSelectedWeather] = useState(currentWeather);
-  const [allData, setAllData] = useState(null);
-  const latestRef = useRef(0); // Using useRef for latest
+  const [allData, setAllData] = useState([{}]);
   
   useEffect(() => {
     const fetchData = async () => {
@@ -20,31 +19,24 @@ function App() {
         console.error("Error fetching data:", error);
       }
     };
-  
     fetchData();
-  
-    const intervalId = setInterval(() => {
-      latestRef.current = (latestRef.current + 1) % (allData ? allData.length : 1);
-      setSelectedWeather(allData?.[latestRef.current]?.condition || currentWeather);
-    }, 5000);
-  
-    return () => clearInterval(intervalId);
   }, [allData, currentWeather]);
+  
+  console.log(allData[0])
 
-  console.log(allData?.[latestRef.current]?.["avg_temp (c)"]);
 
   return (
     <div className="flex flex-col h-full w-full justify-center items-center bg-[#030712]">
       <Header
-        date={allData ? allData[latestRef.current]?.date : ""}
-        avg_temp={allData ? allData[latestRef.current]?.["avg_temp (c)"] : ""}
+        date={""}
+        avg_temp={""}
         currentWeather={currentWeather}
         forecastWeather={forecastWeather}
         setSelectedWeather={setSelectedWeather}
       />
       <div className="flex flex-row w-full justify-center items-center divide-x-2 divide-gray-800">
         <Render selectedWeather={selectedWeather} />
-        <Parameters
+        {/* <Parameters
           avg_humidity={allData?.[latestRef.current]?.avg_humidity || 5}
           avg_temp={allData?.[latestRef.current]?.["avg_temp (c)"] || 15}
           avg_visibility={allData?.[latestRef.current]?.avg_visibility || 8}
@@ -59,7 +51,7 @@ function App() {
           uv_index={allData?.[latestRef.current]?.uv_index || 30}
           will_it_rain={allData?.[latestRef.current]?.will_it_rain || 30}
           will_it_snow={allData?.[latestRef.current]?.will_it_snow || 30}
-        />
+        /> */}
       </div>
     </div>
   );

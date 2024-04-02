@@ -8,15 +8,13 @@ config();
 const app = express();
 const PORT = process.env.PORT || 8080;
 
-app.use((req, res, next) => {
-  res.set("Access-Control-Allow-Origin", "*");
-  res.set("Access-Control-Allow-Headers", "*");
-  res.set("Access-Control-Allow-Methods", "*");
-  if (req.method === "OPTIONS") {
-    res.status(200).end();
-    return;
+app.use((req, res, next) => { 
+  res.header("Access-Control-Allow-Headers", 'Origin, X-Requested-With, Content-Type, Accept, Authorization') 
+  if(req.method === "OPTIONS") { 
+      res.header("Access-Control-Allow-Methods", "PUT, POST, PATCH, DELETE, GET");
+      return res.status(200).json({})
   }
-  next();
+  next(); 
 });
 
 app.use(express.json());
