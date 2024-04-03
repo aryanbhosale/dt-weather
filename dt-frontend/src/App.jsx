@@ -8,8 +8,7 @@ function App() {
   const [currentWeather, setCurrentWeather] = useState("Snow");
   const [forecastWeather, setForecastWeather] = useState("Rain");
   const [selectedWeather, setSelectedWeather] = useState(currentWeather);
-  const [allData, setAllData] = useState(null);
-  const latestRef = useRef(0); // Using useRef for latest
+  const [allData, setAllData] = useState([{}]);
   
   useEffect(() => {
     const fetchData = async () => {
@@ -20,46 +19,49 @@ function App() {
         console.error("Error fetching data:", error);
       }
     };
-  
     fetchData();
+  }, [allData]);
   
-    const intervalId = setInterval(() => {
-      latestRef.current = (latestRef.current + 1) % (allData ? allData.length : 1);
-      setSelectedWeather(allData?.[latestRef.current]?.condition || currentWeather);
-    }, 5000);
-  
-    return () => clearInterval(intervalId);
-  }, [allData, currentWeather]);
+  console.log(allData[0])
 
-  console.log(allData?.[latestRef.current]?.["avg_temp (c)"]);
+//   {
+//     "max_temp": "33.2",
+//     "min_temp": "21.0",
+//     "avg_temp": "27.0",
+//     "max_wind": "20.9",
+//     "total_precip": "0.0",
+//     "total_snow": "0.0",
+//     "avg_visibility": "10.0",
+//     "avg_humidity": "32",
+//     "condition": "7",
+//     "uv_index": "8.0",
+//     "date": "2024-04-02T12:10:20.428Z"
+// }
+
 
   return (
     <div className="flex flex-col h-full w-full justify-center items-center bg-[#030712]">
       <Header
-        date={allData ? allData[latestRef.current]?.date : ""}
-        avg_temp={allData ? allData[latestRef.current]?.["avg_temp (c)"] : ""}
-        currentWeather={currentWeather}
+        date={allData[0].date || "2024-04-02T12:10:20.428Z"}
+        avg_temp={allData[0].avg_temp || ""}
+        condition={allData[0].condition || ""}
         forecastWeather={forecastWeather}
         setSelectedWeather={setSelectedWeather}
       />
       <div className="flex flex-row w-full justify-center items-center divide-x-2 divide-gray-800">
         <Render selectedWeather={selectedWeather} />
-        <Parameters
-          avg_humidity={allData?.[latestRef.current]?.avg_humidity || 5}
-          avg_temp={allData?.[latestRef.current]?.["avg_temp (c)"] || 15}
-          avg_visibility={allData?.[latestRef.current]?.avg_visibility || 8}
-          chance_of_rain={allData?.[latestRef.current]?.chance_of_rain || 10}
-          chance_of_snow={allData?.[latestRef.current]?.chance_of_snow || 20}
-          condition={allData?.[latestRef.current]?.condition || 30}
-          max_temp={allData?.[latestRef.current]?.max_temp || 30}
-          max_wind={allData?.[latestRef.current]?.max_wind || 30}
-          min_temp={allData?.[latestRef.current]?.min_temp || 30}
-          total_precip={allData?.[latestRef.current]?.total_precip || 30}
-          total_snow={allData?.[latestRef.current]?.total_snow || 30}
-          uv_index={allData?.[latestRef.current]?.uv_index || 30}
-          will_it_rain={allData?.[latestRef.current]?.will_it_rain || 30}
-          will_it_snow={allData?.[latestRef.current]?.will_it_snow || 30}
-        />
+        { <Parameters
+          avg_humidity={allData[0].avg_humidity || ""}
+          avg_temp={allData[0].avg_temp || ""}
+          avg_visibility={allData[0].avg_visibility || ""}
+          condition={allData[0].condition || ""}
+          max_temp={allData[0].max_temp || ""}
+          max_wind={allData[0].max_wind || ""}
+          min_temp={allData[0].min_temp || ""}
+          total_precip={allData[0].total_precip || ""}
+          total_snow={allData[0].total_snow || ""}
+          uv_index={allData[0].uv_index || ""}
+        /> }
       </div>
     </div>
   );
