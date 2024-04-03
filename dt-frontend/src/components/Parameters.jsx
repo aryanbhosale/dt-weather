@@ -30,8 +30,6 @@ export default function Parameters({
         avg_humidity,
         avg_temp,
         avg_visibility,
-        chance_of_rain,
-        chance_of_snow,
         condition,
         max_temp,
         max_wind,
@@ -39,15 +37,11 @@ export default function Parameters({
         total_precip,
         total_snow,
         uv_index,
-        will_it_rain,
-        will_it_snow,
       });
     }, [
       avg_humidity,
       avg_temp,
       avg_visibility,
-      chance_of_rain,
-      chance_of_snow,
       condition,
       max_temp,
       max_wind,
@@ -55,8 +49,6 @@ export default function Parameters({
       total_precip,
       total_snow,
       uv_index,
-      will_it_rain,
-      will_it_snow,
   ]);
 
   const handleChange = (event) => {
