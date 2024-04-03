@@ -79,4 +79,4 @@ const insertData = async () => {
     console.log("Inserted for", values)
 };
 
-setInterval(insertData, 5000);
+setInterval(insertData, 8000);
