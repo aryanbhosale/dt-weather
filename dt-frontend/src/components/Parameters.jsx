@@ -27,13 +27,13 @@ export default function Parameters({
   const [showUpdateButton, setShowUpdateButton] = useState(false);
     useEffect(() => {
       setParameters({
-        avg_humidity,
-        avg_temp,
+        avg_humidity: avg_humidity,
+        avg_temp: parseFloat(avg_temp).toFixed(2),
         avg_visibility,
         condition,
-        max_temp,
-        max_wind,
-        min_temp,
+        max_temp: parseFloat(max_temp).toFixed(2),
+        max_wind: parseFloat(max_wind).toFixed(2),
+        min_temp: parseFloat(min_temp).toFixed(2),
         total_precip,
         total_snow,
         uv_index,
