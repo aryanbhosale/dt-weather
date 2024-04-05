@@ -44,22 +44,24 @@ const Header = ({ condition, date, avg_temp }) => {
       <div className="flex justify-center items-center text-center w-full h-full cursor-pointer hover:bg-gray-800 active:bg-slate-950 transition-all">
         <div className="flex flex-row justify-around h-full w-full pt-5">
           <div>
-            <div className="text-lg border border-gray-700 flex flex-row justify-center">
+            <div className="text-lg border border-gray-700 flex flex-row justify-center py-2 px-4 rounded-md">
               Predicted Climate{" "}
               <span className="p-2">
                 <img src={clockIcon} className="h-4 w-4" alt="Clock Icon" />
               </span>
             </div>
             <div className="flex flex-row justify-center space-x-20 mt-5">
-              <p>{parseFloat(avg_temp).toFixed(2)} °C</p>
+              <p className="text-3xl font-md">
+                {parseFloat(avg_temp).toFixed(2)} °C
+              </p>
               <div className="flex flex-col justify-start">
-                <div className="flex flex-row space-x-2 justify-center">
-                  <p>{condition}</p>{" "}
+                <div className="flex flex-row space-x-2 justify-center items-center">
+                  <p className="text-3xl font-md">{condition}</p>{" "}
                   {getConditionIcon(condition) && (
                     <span>
                       <img
                         src={getConditionIcon(condition)}
-                        className="h-5 w-5"
+                        className="h-6 w-6"
                         alt={`${condition} Icon`}
                       />
                     </span>
@@ -69,7 +71,7 @@ const Header = ({ condition, date, avg_temp }) => {
             </div>
           </div>
           <div className="flex justify-end">
-            <div className="flex flex-col  border-gray-700">
+            <div className="flex flex-col border-gray-700 px-4 py-2 rounded-md">
               <div className="flex justify-center space-y-10">
                 <img
                   src={calendarIcon}
@@ -77,7 +79,9 @@ const Header = ({ condition, date, avg_temp }) => {
                   alt="Calendar Icon"
                 />
               </div>
-              <p>{format(new Date(date), "dd MMM, yyyy - HH:mm")}</p>
+              <p className="text-lg font-medium">
+                {format(new Date(date), "dd MMM, yyyy - HH:mm")}
+              </p>
             </div>
           </div>
         </div>
