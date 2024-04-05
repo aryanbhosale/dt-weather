@@ -76,6 +76,8 @@ const insertData = async () => {
 
     await client.query(insertQuery, values);
 
+    client.release()
+
     console.log("Inserted for", values)
 };
 

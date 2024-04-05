@@ -14,7 +14,6 @@ router.get("/fetch-data", async (req, res) => {
 
 router.post("/insert-data", async (req, res) => {
   const {
-    date,
     max_temp,
     min_temp,
     avg_temp,
@@ -26,9 +25,7 @@ router.post("/insert-data", async (req, res) => {
     uv_index,
   } = req.body;
   try {
-    await insertDataIntoDB(
-      client,
-      date,
+    const rows = await insertDataIntoDB(
       max_temp,
       min_temp,
       avg_temp,
@@ -39,7 +36,7 @@ router.post("/insert-data", async (req, res) => {
       avg_humidity,
       uv_index
     );
-    res.status(200).send({ status: "ok" });
+    res.status(200).send({ status: "ok", data: rows });
   } catch (e) {
     res.status(500).send({ status: "failure", error: e });
   }
