@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 export default function Parameters({
   avg_humidity,
@@ -59,8 +60,18 @@ export default function Parameters({
     setShowUpdateButton(true);
   };
 
+  const postData = async (data) => {
+  try {
+    const response = await axios.post("http://localhost:8080/sensor/insert-data", data);
+    console.log("Data posted successfully:", response.data);
+  } catch (error) {
+    console.error("Error posting data:", error);
+  }
+};
+
   const handleUpdate = () => {
     console.log(parameters);
+    postData(parameters);
     setShowUpdateButton(false);
   };
 
@@ -82,6 +93,7 @@ export default function Parameters({
                     name={key}
                     value={value}
                     onChange={handleChange}
+                    disabled={key==="condition"}
                   />
                 </span>
               </li>
