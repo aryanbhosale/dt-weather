@@ -51,7 +51,7 @@ const Header = ({ condition, date, avg_temp }) => {
               </span>
             </div>
             <div className="flex flex-row justify-center space-x-20 mt-5">
-              <p>{avg_temp} °C</p>
+              <p>{parseFloat(avg_temp).toFixed(2)} °C</p>
               <div className="flex flex-col justify-start">
                 <div className="flex flex-row space-x-2 justify-center">
                   <p>{condition}</p>{" "}
